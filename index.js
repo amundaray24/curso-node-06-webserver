@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
+require('dotenv').config();
 
 //TODO: require HBS
 app.set('view engine','hbs');
@@ -25,7 +26,7 @@ app.get('/elements', (req,res) => {
 });
 
 //PORTS
-const port = 3000;
+const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
