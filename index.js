@@ -1,17 +1,31 @@
 const express = require('express');
 const app = express();
+const hbs = require('hbs');
 
-const port = 3000;
-
+//TODO: require HBS
+app.set('view engine','hbs');
+hbs.registerPartials(`${__dirname}/views/partials`,(error) => {});
 app.use(express.static('public'));
 
+const params = {
+  name: 'Angerson Jose Amundaray Rengifo',
+  tittle: 'Curso Node' //Road Trip by TEMPLATED
+}
+
+app.get('/', (req,res) => {
+  res.render('home',params);
+});
+
 app.get('/generic', (req,res) => {
-  res.sendFile(`${__dirname}/public/generic.html`);
+  res.render('generic',params);
 });
 
 app.get('/elements', (req,res) => {
-  res.sendFile(`${__dirname}/public/elements.html`);
+  res.render('elements',params);
 });
+
+//PORTS
+const port = 3000;
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
