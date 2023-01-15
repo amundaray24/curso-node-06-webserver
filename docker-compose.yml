@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  node-web-server:
+    image: node-web-server:0.0.1
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: node-web-server
+    ports:
+      - "3000:3000"
